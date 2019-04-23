@@ -1,0 +1,164 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.kewail.project.mailbox.mail.mapper.GroupMailMapper" >
+  <resultMap id="BaseResultMap" type="com.kewail.project.mailbox.mail.domain.GroupMail" >
+    <id column="task_id" property="taskId" jdbcType="INTEGER" />
+    <result column="addresser" property="addresser" jdbcType="VARCHAR" />
+    <result column="subject" property="subject" jdbcType="VARCHAR" />
+    <result column="dept_number" property="deptNumber" jdbcType="INTEGER" />
+    <result column="create_time" property="createTime" jdbcType="TIMESTAMP" />
+    <result column="task_progress" property="taskProgress" jdbcType="VARCHAR" />
+    <result column="update_by" property="updateBy" jdbcType="VARCHAR" />
+    <result column="update_time" property="updateTime" jdbcType="TIMESTAMP" />
+    <result column="recipient" property="recipient" jdbcType="VARCHAR" />
+    <result column="notice" property="notice" jdbcType="VARCHAR" />
+    <result column="enclosure" property="enclosure" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    task_id, addresser, subject, dept_number, create_time, task_progress, update_by, 
+    update_time, recipient, notice, enclosure
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from group_mail
+    where task_id = #{taskId,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from group_mail
+    where task_id = #{taskId,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.kewail.project.mailbox.mail.domain.GroupMail" >
+    insert into group_mail (task_id, addresser, subject, 
+      dept_number, create_time, task_progress, 
+      update_by, update_time, recipient, 
+      notice, enclosure)
+    values (#{taskId,jdbcType=INTEGER}, #{addresser,jdbcType=VARCHAR}, #{subject,jdbcType=VARCHAR}, 
+      #{deptNumber,jdbcType=INTEGER}, #{createTime,jdbcType=TIMESTAMP}, #{taskProgress,jdbcType=VARCHAR}, 
+      #{updateBy,jdbcType=VARCHAR}, #{updateTime,jdbcType=TIMESTAMP}, #{recipient,jdbcType=VARCHAR}, 
+      #{notice,jdbcType=VARCHAR}, #{enclosure,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.kewail.project.mailbox.mail.domain.GroupMail" >
+    insert into group_mail
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="taskId != null" >
+        task_id,
+      </if>
+      <if test="addresser != null" >
+        addresser,
+      </if>
+      <if test="subject != null" >
+        subject,
+      </if>
+      <if test="deptNumber != null" >
+        dept_number,
+      </if>
+      <if test="createTime != null" >
+        create_time,
+      </if>
+      <if test="taskProgress != null" >
+        task_progress,
+      </if>
+      <if test="updateBy != null" >
+        update_by,
+      </if>
+      <if test="updateTime != null" >
+        update_time,
+      </if>
+      <if test="recipient != null" >
+        recipient,
+      </if>
+      <if test="notice != null" >
+        notice,
+      </if>
+      <if test="enclosure != null" >
+        enclosure,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="taskId != null" >
+        #{taskId,jdbcType=INTEGER},
+      </if>
+      <if test="addresser != null" >
+        #{addresser,jdbcType=VARCHAR},
+      </if>
+      <if test="subject != null" >
+        #{subject,jdbcType=VARCHAR},
+      </if>
+      <if test="deptNumber != null" >
+        #{deptNumber,jdbcType=INTEGER},
+      </if>
+      <if test="createTime != null" >
+        #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="taskProgress != null" >
+        #{taskProgress,jdbcType=VARCHAR},
+      </if>
+      <if test="updateBy != null" >
+        #{updateBy,jdbcType=VARCHAR},
+      </if>
+      <if test="updateTime != null" >
+        #{updateTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="recipient != null" >
+        #{recipient,jdbcType=VARCHAR},
+      </if>
+      <if test="notice != null" >
+        #{notice,jdbcType=VARCHAR},
+      </if>
+      <if test="enclosure != null" >
+        #{enclosure,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.kewail.project.mailbox.mail.domain.GroupMail" >
+    update group_mail
+    <set >
+      <if test="addresser != null" >
+        addresser = #{addresser,jdbcType=VARCHAR},
+      </if>
+      <if test="subject != null" >
+        subject = #{subject,jdbcType=VARCHAR},
+      </if>
+      <if test="deptNumber != null" >
+        dept_number = #{deptNumber,jdbcType=INTEGER},
+      </if>
+      <if test="createTime != null" >
+        create_time = #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="taskProgress != null" >
+        task_progress = #{taskProgress,jdbcType=VARCHAR},
+      </if>
+      <if test="updateBy != null" >
+        update_by = #{updateBy,jdbcType=VARCHAR},
+      </if>
+      <if test="updateTime != null" >
+        update_time = #{updateTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="recipient != null" >
+        recipient = #{recipient,jdbcType=VARCHAR},
+      </if>
+      <if test="notice != null" >
+        notice = #{notice,jdbcType=VARCHAR},
+      </if>
+      <if test="enclosure != null" >
+        enclosure = #{enclosure,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where task_id = #{taskId,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.kewail.project.mailbox.mail.domain.GroupMail" >
+    update group_mail
+    set addresser = #{addresser,jdbcType=VARCHAR},
+      subject = #{subject,jdbcType=VARCHAR},
+      dept_number = #{deptNumber,jdbcType=INTEGER},
+      create_time = #{createTime,jdbcType=TIMESTAMP},
+      task_progress = #{taskProgress,jdbcType=VARCHAR},
+      update_by = #{updateBy,jdbcType=VARCHAR},
+      update_time = #{updateTime,jdbcType=TIMESTAMP},
+      recipient = #{recipient,jdbcType=VARCHAR},
+      notice = #{notice,jdbcType=VARCHAR},
+      enclosure = #{enclosure,jdbcType=VARCHAR}
+    where task_id = #{taskId,jdbcType=INTEGER}
+  </update>
+</mapper>
